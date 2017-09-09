@@ -1,3 +1,3 @@
 
-require('bin/index.js')();
-
+var  main = require('./bin/index.js');
+main();
