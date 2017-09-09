@@ -61,7 +61,9 @@ function buildIndex() {
     if(fs.existsSync(LOADJS_PATH)){
         var loadJs = fs.readFileSync(LOADJS_PATH, 'utf-8');
         INDEX_HTML_DATA = INDEX_HTML_DATA.replace(LIB_JS_REGEX, '').replace(GMAE_JS_REGEX, '').replace(EGRET_JS_REGEX,loadJs);
-        fs.writeFile(INDEX_FILE_PATH, INDEX_HTML_DATA);
+        fs.writeFile(INDEX_FILE_PATH, INDEX_HTML_DATA,function () {
+            console.log(chalk.green('---------ok---------'))
+        });
     }
 }
 
