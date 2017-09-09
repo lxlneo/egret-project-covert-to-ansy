@@ -1,8 +1,9 @@
 {
   "name": "egret-project-covert-to-ansy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "https://github.com/lxlneo/egret-project-covert-to-ansy.git",
   "author": "wahaha <lxlneo@126.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "bin" : { "myapp" : "./index.js" }
 }

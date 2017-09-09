@@ -49,7 +49,7 @@ function buildMainifest() {
     fs.writeFileSync(JS_FILE_NAME, JSON.stringify(src_json));
 }
 function buildIndex() {
-    var loadJs = fs.readFileSync('./bin/loadjs.js', 'utf-8');
+    var loadJs = fs.readFileSync('./loadjs.js', 'utf-8');
     INDEX_HTML_DATA = INDEX_HTML_DATA.replace(LIB_JS_REGEX, '').replace(GMAE_JS_REGEX, '').replace(EGRET_JS_REGEX,loadJs);
     fs.writeFileSync(INDEX_FILE_PATH, INDEX_HTML_DATA);
 }
