@@ -9,7 +9,7 @@ var fs = require('fs');
 var INDEX_HTML_DATA = '';
 var INDEX_FILE_PATH = process.cwd()+'/index.html';
 var JS_FILE_NAME = process.cwd() + '/mainifest.json';
-var LOAD_JS_PATH = 'loadjs.js';
+var LOADJS_PATH = __dirname+'/loadjs.js';
 var LIB_JS_REGEX = /<!--modules_files_start--\>([\s\S]*)<!--modules_files_end--\>/gi;
 var GMAE_JS_REGEX = /<!--game_files_start--\>([\s\S]*)<!--game_files_end--\>/gi;
 var EGRET_JS_REGEX = /egret.runEgret[^;]+;/;
@@ -49,16 +49,22 @@ function getUrl(scripturls) {
         return result;
     }
 }
+
 function buildMainifest() {
     var libjs = getJsLibPath(LIB_JS_REGEX);
     var gamejs = getJsLibPath(GMAE_JS_REGEX);
     var src_json = getUrl(libjs.concat(gamejs));
     fs.writeFileSync(JS_FILE_NAME, JSON.stringify(src_json));
 }
+
 function buildIndex() {
-    var loadJs = fs.readFileSync(LOADJS_PATH, 'utf-8');
-    INDEX_HTML_DATA = INDEX_HTML_DATA.replace(LIB_JS_REGEX, '').replace(GMAE_JS_REGEX, '').replace(EGRET_JS_REGEX,loadJs);
-    fs.writeFileSync(INDEX_FILE_PATH, INDEX_HTML_DATA);
+     console.log(fs.existsSync(LOADJS_PATH))
+    if(fs.existsSync(LOADJS_PATH)){
+        var loadJs = fs.readFileSync(LOADJS_PATH, 'utf-8');
+        INDEX_HTML_DATA = INDEX_HTML_DATA.replace(LIB_JS_REGEX, '').replace(GMAE_JS_REGEX, '').replace(EGRET_JS_REGEX,loadJs);
+        console.log(INDEX_HTML_DATA)
+        fs.writeFile(INDEX_FILE_PATH, INDEX_HTML_DATA);
+    }
 }
 
 function coverEgretIndex() {
