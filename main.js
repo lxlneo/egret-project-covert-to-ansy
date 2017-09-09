@@ -1,3 +1,5 @@
+#!/usr/bin/env node
 
-var  main = require('./bin/index.js');
-main();
+'use strict';
+require('./bin/index.js')();
+
