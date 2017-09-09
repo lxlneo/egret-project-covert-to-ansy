@@ -2,19 +2,25 @@
  * Created by neo on 2017/9/8.
  */
 
-
+var chalk = require('chalk');
 var path = require('path');
 var fs = require('fs');
 
 var INDEX_HTML_DATA = '';
-var INDEX_FILE_PATH = './index.html';
+var INDEX_FILE_PATH = process.cwd()+'/index.html';
 var JS_FILE_NAME = 'mainifest.json';
 var LIB_JS_REGEX = /<!--modules_files_start--\>([\s\S]*)<!--modules_files_end--\>/gi;
 var GMAE_JS_REGEX = /<!--game_files_start--\>([\s\S]*)<!--game_files_end--\>/gi;
 var EGRET_JS_REGEX = /egret.runEgret[^;]+;/;
 var SRC_REGEX = /src="(\S+)"></;
-function readIndexFile() {
-    INDEX_HTML_DATA = fs.readFileSync(INDEX_FILE_PATH, 'utf-8');
+function readIndexFile(callback) {
+      var  exists  =   fs.existsSync(INDEX_FILE_PATH)
+        if(exists) {
+            INDEX_HTML_DATA = fs.readFileSync(INDEX_FILE_PATH, 'utf-8');
+            callback && callback();
+        }else{
+          return  console.error(chalk.red('当前的路径不正确 未发现 index.html文件'));
+        }
 }
 
 /***
@@ -55,9 +61,10 @@ function buildIndex() {
 }
 
 function coverEgretIndex() {
-    readIndexFile()
-    buildMainifest();
-    buildIndex();
+    readIndexFile(function () {
+        buildMainifest();
+        buildIndex();
+    });
 }
 
 module.exports = coverEgretIndex;

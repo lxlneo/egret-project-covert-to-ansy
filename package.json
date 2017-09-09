@@ -5,5 +5,10 @@
   "repository": "https://github.com/lxlneo/egret-project-covert-to-ansy.git",
   "author": "wahaha <lxlneo@126.com>",
   "license": "MIT",
-  "bin" : { "buildeindex" : "./main.js" }
+  "bin": {
+    "buildeindex": "./main.js"
+  },
+  "dependencies": {
+    "chalk": "^2.1.0"
+  }
 }
