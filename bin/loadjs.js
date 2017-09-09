@@ -34,8 +34,8 @@ xhr.addEventListener("load", function () {
     /*manifest.game.forEach(function(value, index, array) {
      array[index] += ("?v=" + Math.random());
      });*/
-    var list = manifest.initial.concat(manifest.game);
-    loadScript(list, function () {
+
+    loadScript(manifest, function () {
         /**
          * {
              * "renderMode":, //引擎渲染模式，"canvas" 或者 "webgl"
