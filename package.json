@@ -1,0 +1,8 @@
+{
+  "name": "egret-project-covert-to-ansy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lxlneo/egret-project-covert-to-ansy.git",
+  "author": "wahaha <lxlneo@126.com>",
+  "license": "MIT"
+}
