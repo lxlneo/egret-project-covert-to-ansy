@@ -59,8 +59,9 @@ function buildMainifest() {
 
 function buildIndex() {
     if(fs.existsSync(LOADJS_PATH)){
+        var versionString = '<script type="text/javascript">window.version='+ new Date().getTime()+'</script>'
         var loadJs = fs.readFileSync(LOADJS_PATH, 'utf-8');
-        INDEX_HTML_DATA = INDEX_HTML_DATA.replace(LIB_JS_REGEX, '').replace(GMAE_JS_REGEX, '').replace(EGRET_JS_REGEX,loadJs);
+        INDEX_HTML_DATA = INDEX_HTML_DATA.replace(/<\/head>/,versionString+"$&").replace(LIB_JS_REGEX, '').replace(GMAE_JS_REGEX, '').replace(EGRET_JS_REGEX,loadJs);
         fs.writeFile(INDEX_FILE_PATH, INDEX_HTML_DATA,function () {
             console.log(chalk.green('---------ok---------'))
         });
